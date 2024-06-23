@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload and Generate Story</title>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form action="/upload_story" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept=".png, .jpg, .jpeg, .gif">
+        <input type="submit" value="Upload">
+    </form>
+
+    <hr>
+    {% for item in stories %}
+    <img src="data:image/png;base64,{{ item.styled_image }}" alt="Styled Image">
+    {% if item.generated_image %}
+    <img src="data:image/png;base64,{{ item.generated_image }}" alt="Generated Image">
+    {% endif %}
+    <h2>Generated Story with {{ item.label }}:</h2>
+    <p>{{ item.story }}</p>
+    <hr>
+    {% endfor %}
+</body>
+</html>
