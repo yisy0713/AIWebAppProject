@@ -40,7 +40,7 @@ preprocess = transforms.Compose([
 stories = []
 
 def classify_image(image):
-    image = preprocess(image)
+    image = preprocess(image)       # 이미지 전처리
     image = image.unsqueeze(0)
     with torch.no_grad():
         output = model(image)
